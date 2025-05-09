@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './toDoList.css' 
 function Input(){
     let [input,setInput]=useState("");  //input task 
     let [task,setTask]=useState([]);     //input array
@@ -18,16 +19,23 @@ function Input(){
         }
 
     }
-    return(
-       <form>
-        <h1>To-Do List</h1>
-        <input placeholder="Enter your tasks" name={input} type="text" onChange={handleInput}></input>
-        <button onClick={addTasks}>Add Tasks</button>
 
-        <ul>
+    const deleteTask=(idx)=>{
+        const updateTask=task.filter((_,index)=>index !==idx);
+        setTask(updateTask);
+    }
+    return(
+       <form onSubmit={addTasks}>
+        <h1>To-Do List</h1>
+       
+       <input placeholder="Enter your tasks" name={input} type="text" onChange={handleInput} ></input>
+       <button onClick={addTasks}>Add Tasks</button>
+       
+        <ul className="lists">
+            {/* mapping task  */}
             {task.map((item,index)=>{
                return(
-                <li key={index}>{item}     <button> Delete Task</button></li>
+              <li key={index}>{index+1}.{item} <button className="delbtn" onClick={()=>deleteTask(index)}> Delete Task</button></li>
             
                )
             })}
