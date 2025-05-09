@@ -14,7 +14,7 @@ function Input(){
         e.preventDefault();
         if(input.trim()){
             setTask([...task,input]);
-            setInput(" ");
+            setInput("");
 
         }
 
@@ -29,9 +29,9 @@ function Input(){
         <h1>To-Do List</h1>
        
        <input placeholder="Enter your tasks" name={input} type="text" onChange={handleInput} ></input>
-       <button onClick={addTasks}>Add Tasks</button>
+       <button onClick={addTasks} id="inputBtn">Add Tasks</button>
        
-        <ul className="lists">
+        {/* <ul className="lists"> */}
             {/* mapping task  */}
             {task.map((item,index)=>{
                return(
@@ -40,7 +40,7 @@ function Input(){
                )
             })}
           
-        </ul>
+        {/* </ul> */}
        </form>
     )
 }
